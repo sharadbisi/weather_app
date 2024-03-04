@@ -56,6 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
       case 'dust':
       case 'fog':
         return 'images/weather/cloudy.png';
+      // return 'http://openweathermap.org/img/w/${_weather?.icon}.png';
       case 'rain':
       case 'drizzle':
       case 'shower rain':
@@ -87,14 +88,15 @@ class _MyHomePageState extends State<MyHomePage> {
               child: TextField(
                 controller: _searchController,
                 decoration: InputDecoration(
-                  icon: IconButton(
-                      onPressed: () {
-                        String cityName = _searchController.text;
-                        if (cityName.isNotEmpty) {
-                          _searchWeather(cityName);
-                        }
-                      },
-                      icon: const Icon(Icons.search)),
+                  prefixIcon: IconButton(
+                    onPressed: () {
+                      String cityName = _searchController.text.trim();
+                      if (cityName.isNotEmpty) {
+                        _searchWeather(cityName);
+                      }
+                    },
+                    icon: const Icon(Icons.search, color: Colors.blue),
+                  ),
                   hintText: 'Enter City Name',
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
@@ -119,12 +121,15 @@ class _MyHomePageState extends State<MyHomePage> {
             if (_weather != null) ...[
               Text(
                 _weather!.cityName,
-                style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
+                style:
+                    const TextStyle(fontSize: 25, fontWeight: FontWeight.w700),
               ),
               Image.asset(
                 getWeatherCondition(_weather!.mainCondition),
                 height: 100,
               ),
+
+              // Image.network(getWeatherCondition(_weather!.mainCondition)),
               const SizedBox(height: 20),
               Text(
                 '${_weather!.temp.round()}°C ${_weather!.mainCondition}',
@@ -163,16 +168,18 @@ class _MyHomePageState extends State<MyHomePage> {
                           if (_weather?.rain != null)
                             Text(
                               'Rain: ${_weather!.rain}mm',
-                              style: const TextStyle(fontWeight: FontWeight.bold),
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
                             ),
                           if (_weather?.snow != null)
                             Text(
                               'Snow: ${_weather!.snow}mm',
-                              style: const TextStyle(fontWeight: FontWeight.bold),
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
                             ),
                           if ((_weather?.rain) == null) ...[
                             const Text(
-                              'NA',
+                              '0%',
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                           ],
@@ -185,7 +192,8 @@ class _MyHomePageState extends State<MyHomePage> {
                       padding: const EdgeInsets.only(top: 18),
                       child: Column(
                         children: [
-                          Image.asset('images/weather/humidity.png', height: 40),
+                          Image.asset('images/weather/humidity.png',
+                              height: 40),
                           Text(
                             '${_weather?.humidity ?? ''}%',
                             style: const TextStyle(fontWeight: FontWeight.bold),
@@ -270,7 +278,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: Column(
                             children: [
                               const Text('12 AM',
-                                  style: TextStyle(fontWeight: FontWeight.bold)),
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.bold)),
                               Image.asset('images/weather/cloudy.png',
                                   height: 40),
                               const Text('32°C')
@@ -296,7 +305,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: Column(
                             children: [
                               const Text('2 AM',
-                                  style: TextStyle(fontWeight: FontWeight.bold)),
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.bold)),
                               Image.asset('images/weather/cloudy.png',
                                   height: 40),
                               const Text('33°C')
@@ -322,7 +332,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: Column(
                             children: [
                               const Text('12 AM',
-                                  style: TextStyle(fontWeight: FontWeight.bold)),
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.bold)),
                               Image.asset('images/weather/cloudy.png',
                                   height: 40),
                               const Text('32°C')
@@ -348,7 +359,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: Column(
                             children: [
                               const Text('12 AM',
-                                  style: TextStyle(fontWeight: FontWeight.bold)),
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.bold)),
                               Image.asset('images/weather/cloudy.png',
                                   height: 40),
                               const Text('32°C')
@@ -374,7 +386,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: Column(
                             children: [
                               const Text('12 AM',
-                                  style: TextStyle(fontWeight: FontWeight.bold)),
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.bold)),
                               Image.asset('images/weather/cloudy.png',
                                   height: 40),
                               const Text('32°C')
@@ -400,7 +413,8 @@ class _MyHomePageState extends State<MyHomePage> {
                           child: Column(
                             children: [
                               const Text('12 AM',
-                                  style: TextStyle(fontWeight: FontWeight.bold)),
+                                  style:
+                                      TextStyle(fontWeight: FontWeight.bold)),
                               Image.asset('images/weather/cloudy.png',
                                   height: 40),
                               const Text('32°C')

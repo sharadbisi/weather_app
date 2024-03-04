@@ -6,6 +6,7 @@ class Weather {
   final double? rain;// Add a field for precipitation
   final double? snow;
   final double? windSpeed;
+  final String icon;
   // final DateTime dateTime;
    
 
@@ -17,6 +18,7 @@ class Weather {
     this.rain, // Initialized as optional
     this.snow,
     this.windSpeed,
+    required this.icon,
     // required this.dateTime,
   });
 
@@ -29,6 +31,7 @@ class Weather {
       rain: json['rain']?['1h'], // Parse rain volume for the last 1 hour if available
       snow: json['snow']?['1h'],
       windSpeed: json['wind']['speed'] != null ? (json['wind']['speed'].toDouble() / 0.2777777) : null,
+      icon: json['weather'][0]['icon'],
       // dateTime: DateTime.fromMillisecondsSinceEpoch(json['dt'] * 1000), // Parse date/time from timestamp
     );
   }
