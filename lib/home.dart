@@ -707,26 +707,22 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            // Text(
-                            //   forecast.date
-                            //       .toString(), // Display date (you can format it as needed)
-                            //   style:
-                            //       const TextStyle(fontWeight: FontWeight.bold),
-                            // ),
-                           Text(
-                                DateFormat('MMM d  HH:mm').format(forecast.date),
-                                style: const TextStyle(fontWeight: FontWeight.bold),
-                                ),
+                            Text(
+                              DateFormat('MMM d  HH:mm').format(forecast.date),
+                              style:
+                                  const TextStyle(fontWeight: FontWeight.bold),
+                            ),
                             Image.network(
                               _weather != null
-                                  ? _weatherService
-                                      .getWeatherIconUrl(_weather!.icon)
+                                  ? _weatherService.getWeatherIconUrl(
+                                      forecast.icon) 
                                   : 'fallback_url_to_default_image',
                               height: 80,
                               color: Colors.yellow,
                             ),
+                             // Display temperature for day wisw
                             Text(
-                              '${forecast.temperature}°C', // Display temperature
+                              '${forecast.temperature}°C',
                             ),
                           ],
                         ),
