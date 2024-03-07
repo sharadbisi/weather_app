@@ -438,6 +438,7 @@
 import 'package:flutter/material.dart';
 import 'model.dart';
 import 'services.dart';
+import 'package:intl/intl.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -681,11 +682,14 @@ class _MyHomePageState extends State<MyHomePage> {
             const SizedBox(height: 20),
             //adding 7 days forecast
             if (_forecasts != null) ...[
-              const SizedBox(height: 20),
+              const SizedBox(height: 15),
               const Text(
                 '7 Days Weather Forecasting',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 textAlign: TextAlign.left,
+              ),
+              const SizedBox(
+                height: 5,
               ),
               const SizedBox(width: 10),
               SingleChildScrollView(
@@ -703,23 +707,23 @@ class _MyHomePageState extends State<MyHomePage> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              forecast.date
-                                  .toString(), // Display date (you can format it as needed)
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            // Image.asset(
-                            //   forecast.icon, // Use forecast icon
-                            //   height: 50,
+                            // Text(
+                            //   forecast.date
+                            //       .toString(), // Display date (you can format it as needed)
+                            //   style:
+                            //       const TextStyle(fontWeight: FontWeight.bold),
                             // ),
+                           Text(
+                                DateFormat('MMM d  HH:mm').format(forecast.date),
+                                style: const TextStyle(fontWeight: FontWeight.bold),
+                                ),
                             Image.network(
                               _weather != null
                                   ? _weatherService
                                       .getWeatherIconUrl(_weather!.icon)
                                   : 'fallback_url_to_default_image',
                               height: 80,
-                              color: Colors.blue,
+                              color: Colors.yellow,
                             ),
                             Text(
                               '${forecast.temperature}°C', // Display temperature
