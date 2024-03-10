@@ -716,7 +716,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               _weather != null
                                   ? _weatherService.getWeatherIconUrl(
                                       forecast.icon) 
-                                  : 'fallback_url_to_default_image',
+                                  : 'https://www.flaticon.com/free-icon/photo_685670',
                               height: 80,
                               color: Colors.yellow,
                             ),
@@ -738,3 +738,5 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+
